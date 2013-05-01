@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <groupId>org.webjars</groupId>
   <artifactId>jqplot</artifactId>
-  <version>1.0.8r1250</version>
+  <version>1.0.8r1250-SNAPSHOT</version>
   <name>jqplot</name>
   <description>WebJar for jqplot</description>
   <url>http://webjars.org</url>
@@ -37,7 +37,7 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <upstream.version>${project.version}</upstream.version>
+    <upstream.version>1.0.8r1250</upstream.version>
     <upstream.url>https://bitbucket.org/cleonello/jqplot/downloads</upstream.url>
     <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     <jquery.version>1.8.3</jquery.version>
@@ -48,6 +48,11 @@
       <groupId>org.webjars</groupId>
       <artifactId>jquery</artifactId>
       <version>${jquery.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>explorercanvas</artifactId>
+      <version>r3</version>
     </dependency>
   </dependencies>
 
@@ -91,6 +96,8 @@
                   <fileset dir="${project.build.directory}/jqplot/dist">
                     <exclude name="jquery.js"/>
                     <exclude name="jquery.min.js"/>
+                    <exclude name="excanvas.js"/>
+                    <exclude name="excanvas.min.js"/>
                     <include name="*.js"/>
                     <include name="*.css"/>
                     <include name="plugins/*.css"/>
@@ -105,7 +112,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>2.4.1</version>
       </plugin>
     </plugins>
   </build>

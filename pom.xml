@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <groupId>org.webjars</groupId>
   <artifactId>jqplot</artifactId>
-  <version>1.0.8r1251-SNAPSHOT</version>
+  <version>1.0.9.d96a669-SNAPSHOT</version>
   <name>jqplot</name>
   <description>WebJar for jqplot</description>
   <url>http://webjars.org</url>
@@ -37,8 +37,8 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <upstream.version>1.0.8r1250</upstream.version>
-    <upstream.url>https://bitbucket.org/cleonello/jqplot/downloads</upstream.url>
+    <upstream.version>1.0.9.d96a669</upstream.version>
+    <upstream.url>http://www.jqplot.com/download</upstream.url>
     <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     <jquery.version>1.8.3</jquery.version>
   </properties>
@@ -70,8 +70,8 @@
             </goals>
             <configuration>
               <url>${upstream.url}</url>
-              <fromFile>jquery.jqplot.${upstream.version}.tar.gz</fromFile>
-              <toFile>${project.build.directory}/${project.artifactId}.tar.gz</toFile>
+              <fromFile>jquery.jqplot.${upstream.version}.zip</fromFile>
+              <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
             </configuration>
           </execution>
         </executions>
@@ -86,23 +86,13 @@
             <goals><goal>run</goal></goals>
             <configuration>
               <target>
-                <echo message="make tmp dir..." />
-                <mkdir dir="${destDir}" />
-                <mkdir dir="${project.build.directory}/jqplot" />
-                <echo message="unzip archive..." />
-                <gunzip src="${project.build.directory}/${project.artifactId}.tar.gz" dest="${project.build.directory}" />
-                <untar src="${project.build.directory}/${project.artifactId}.tar" dest="${project.build.directory}/jqplot" />
+                <echo message="make tmp dir..."/>
+                <mkdir dir="${destDir}"/>
+                <mkdir dir="${project.build.directory}/jqplot"/>
+                <echo message="unzip archive..."/>
+                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}/jqplot"/>
                 <move todir="${destDir}">
-                  <fileset dir="${project.build.directory}/jqplot/dist">
-                    <exclude name="jquery.js" />
-                    <exclude name="jquery.min.js" />
-                    <exclude name="excanvas.js" />
-                    <exclude name="excanvas.min.js" />
-                    <include name="*.js" />
-                    <include name="*.css" />
-                    <include name="plugins/*.css" />
-                    <include name="plugins/*.js" />
-                  </fileset>
+                  <fileset dir="${project.build.directory}/jqplot" includes="jquery.jqplot.*"/>
                 </move>
               </target>
             </configuration>
@@ -112,7 +102,18 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.4.1</version>
+        <version>2.5.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.8</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>sonatype-nexus-staging</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
       </plugin>
     </plugins>
   </build>

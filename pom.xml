@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <groupId>org.webjars</groupId>
   <artifactId>jqplot</artifactId>
-  <version>1.0.9.d96a669-1-SNAPSHOT</version>
+  <version>1.0.9.d96a669-1</version>
   <name>jqplot</name>
   <description>WebJar for jqplot</description>
   <url>http://webjars.org</url>
@@ -32,7 +32,7 @@
     <url>http://github.com/webjars/jqplot</url>
     <connection>scm:git:https://github.com/webjars/jqplot.git</connection>
     <developerConnection>scm:git:https://github.com/webjars/jqplot.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>jqplot-1.0.9.d96a669-1</tag>
   </scm>
   
   <properties>

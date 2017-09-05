@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <groupId>org.webjars</groupId>
   <artifactId>jqplot</artifactId>
-  <version>1.0.10.d96a669-SNAPSHOT</version>
+  <version>1.0.9.d96a669-1-SNAPSHOT</version>
   <name>jqplot</name>
   <description>WebJar for jqplot</description>
   <url>http://webjars.org</url>
@@ -92,7 +92,7 @@
                 <echo message="unzip archive..." />
                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}/jqplot" />
                 <move todir="${destDir}">
-                  <fileset dir="${project.build.directory}/jqplot" includes="jquery.jqplot.*" />
+                  <fileset dir="${project.build.directory}/jqplot" includes="jquery.jqplot.* plugins/" />
                 </move>
               </target>
             </configuration>
